@@ -1,0 +1,45 @@
+version: "3.9"
+services:
+  db:
+#    image: postgres
+    image:  "harbor.infotecs.int/dockerhub/library/postgres:12-alpine"
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    env_file:
+      - .env.development
+      - .env.local
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: pg_isready -U $${POSTGRES_USER}
+      interval: 10s
+      timeout: 2s
+      retries: 1
+
+  backend:
+    <<: &backend
+      image: "${BACKEND_IMAGE?Переменная не задана}:dev"
+      build:
+        target: development_build
+        context: .
+        dockerfile: ./docker/Dockerfile
+        cache_from:
+          - "${BACKEND_IMAGE?Переменная не задана}:dev"
+          - "${BACKEND_IMAGE?Переменная не задана}:latest"
+      env_file:
+        - .env.development
+        - .env.local
+      environment:
+        - TAG=${TAG:-dev}
+      restart: "no"
+      volumes:
+        - .:/code
+        - django-static:/code/static
+    command: python /code/app/manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+
+volumes:
+  pgdata:
+  django-static:

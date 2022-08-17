@@ -1,0 +1,10 @@
+{% extends "admin/change_list.html" %}
+
+{% block search %}
+    {% if display_search_help_text %}
+        <div id="search_help_text" style="display: block; padding: 5px 0 5px 32px; background-color: #f2f2f2; ">
+            Поиск по полям: {{ search_fields_help_text }}
+        </div>
+    {% endif %}
+    {{ block.super }}
+{% endblock %}
