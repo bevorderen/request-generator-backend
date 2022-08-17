@@ -9,15 +9,15 @@ from stock.serializers import StockSerializer
 
 
 class StockListApi(ApiErrorsMixin, ListAPIView):
-    # authentication_classes = (TokenAuthentication, BasicAuthentication)
-    # permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication, BasicAuthentication)
+    permission_classes = (IsAuthenticated,)
     serializer_class = StockSerializer
     filter_backends = (DjangoFilterBackend,)
     queryset = Stock.objects.all()
 
 
 class StockDetailApi(ApiErrorsMixin, RetrieveAPIView):
-    # authentication_classes = (TokenAuthentication, BasicAuthentication)
-    # permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication, BasicAuthentication)
+    permission_classes = (IsAuthenticated,)
     serializer_class = StockSerializer
     queryset = Stock.objects.all()
