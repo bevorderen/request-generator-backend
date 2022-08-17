@@ -11,6 +11,7 @@ from order.models import Order
 from order.serializers.dv import RequestDv
 from order.serializers.order import OrderSerializer
 from order.serializers.ov import RequestOv
+from order.services.certificate import order_create_certificate
 from person.models import Person
 from stock.constants import StockType
 from stock.models import Stock
@@ -49,7 +50,8 @@ def order_create(data: dict, user: User):
     order_serializer = OrderSerializer(order)
     response = order_serializer.data
     response.update(request_data)
-
+    certificate = order_create_certificate(data=response)
+    response.update(certificate)
     return response
 
 
