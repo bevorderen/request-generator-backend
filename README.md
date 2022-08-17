@@ -22,8 +22,3 @@ python manage.py createsuperuser --username admin
 docker-compose build
 docker-compose up
 ```
-### Frontend
-```commandline
-cd app/frontend
-npm start
-```
