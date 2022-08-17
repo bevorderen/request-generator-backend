@@ -1,5 +1,5 @@
-#FROM python:3.8-slim-buster AS development_build
-FROM harbor.infotecs.int/dockerhub/library/python:3.9-slim-buster AS development_build
+FROM python:3.8-slim-buster AS development_build
+#FROM harbor.infotecs.int/dockerhub/library/python:3.9-slim-buster AS development_build
 WORKDIR /code
 
 ENV PYTHONDONTWRITEBYTECODE 1
