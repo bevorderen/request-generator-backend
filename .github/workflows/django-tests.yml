@@ -42,5 +42,6 @@ jobs:
       env:
           DATABASE_HOST: localhost 
           DATABASE_PORT: 5432
+          POSTGRES_PASSWORD: password
       run: |
         python3 app/manage.py test app
