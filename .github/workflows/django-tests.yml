@@ -10,7 +10,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.8, 3.9, 3]
+        python-version: [3.8]
         
     services:
       db:
@@ -40,7 +40,7 @@ jobs:
         pip install -r app/requirements.txt
     - name: Run Tests
       env:
-          DATABASE_HOST: db 
+          DATABASE_HOST: localhost 
           DATABASE_PORT: 5432
       run: |
         python3 app/manage.py test app
