@@ -46,5 +46,6 @@ jobs:
           DATABASE_HOST: localhost 
           DATABASE_PORT: 5432
           POSTGRES_PASSWORD: password
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
       run: |
         python3 app/manage.py test app
