@@ -14,6 +14,20 @@ jobs:
       max-parallel: 4
       matrix:
         python-version: [3.8, 3.9, 3]
+        
+    services:
+      db:
+        image: postgres
+        # Provide the password for postgres
+        env:
+          POSTGRES_PASSWORD: password
+          POSTGRES_HOST: localhost
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
     - uses: actions/checkout@v3
