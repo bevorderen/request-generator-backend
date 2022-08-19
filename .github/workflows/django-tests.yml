@@ -18,6 +18,9 @@ jobs:
         # Provide the password for postgres
         env:
           POSTGRES_PASSWORD: password
+          DATABASE_PORT: 5432
+          POSTGRES_DB: request
+          POSTGRES_USER: request
         # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
