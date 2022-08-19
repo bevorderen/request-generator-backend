@@ -7,6 +7,7 @@ env = environ.Env(
     MY_HOST=(str, 'localhost'),
     DOMAIN_NAME=(str, 'http://localhost:8000'),
     interpolate=True,
+    SECRET_KEY_VALUE_ENV=str,
 )
 
 

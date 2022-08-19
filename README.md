@@ -22,3 +22,26 @@ python manage.py createsuperuser --username admin
 docker-compose build
 docker-compose up
 ```
+
+### env.local file
+Generate secret key and put in your env.local file
+```python
+from django.core.management.utils import get_random_secret_key
+print(get_random_secret_key())
+```
+```env.local
+...some settings
+SECRET_KEY_VALUE_ENV=genarated key from stdout
+```
+Put your database password too
+
+## Run tests
+First you need to update role
+```postgresql
+ALTER USER request CREATEDB;
+```
+Second tests
+```commandline
+cd app
+python manage.py test
+```
