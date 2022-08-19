@@ -41,7 +41,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          python app/manage.py app
+          python app/manage.py test app
         env:
           # The hostname used to communicate with the PostgreSQL service container
           DATABASE_HOST: postgres
