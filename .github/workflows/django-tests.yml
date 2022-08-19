@@ -21,7 +21,6 @@ jobs:
         # Provide the password for postgres
         env:
           POSTGRES_PASSWORD: password
-          POSTGRES_HOST: localhost
         # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
@@ -41,6 +40,7 @@ jobs:
         pip install -r app/requirements.txt
     - name: Run Tests
       env:
-          DATABASE_HOST: localhost 
+          DATABASE_HOST: postgres 
+          DATABASE_PORT: 5432
       run: |
         python3 app/manage.py test app
